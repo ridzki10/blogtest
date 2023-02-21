@@ -11,19 +11,25 @@ import 'swiper/css';
 export default function Banner() {
     SwiperCore.use([Autoplay]);
     const [posts,setPosts] = useState([]);
+    const [users,setUsers] = useState([]);
     useEffect(() => {
         const dataFetch = async () => {
             try {
-                let url = `https://gorest.co.in/public/v2/posts?page=1&per_page=5`;
-                let response = await fetch(url);
+                let urlPosts = `https://gorest.co.in/public/v2/posts?page=1&per_page=5`;
+                let urlUsers = `https://gorest.co.in/public/v2/users`;
+                let responsePosts = await fetch(urlPosts);
+                let responseUsers = await fetch(urlUsers);
 
-                if(!response.ok) {
+                if(!responsePosts.ok && !responseUsers.ok) {
                     throw new Error(`Terjadi gangguan: ${response.status}}`);
                 }
 
-                let data = await response.json();
-                console.log(data);
-                setPosts(data);
+                let dataPosts = await responsePosts.json();
+                let dataUsers = await responseUsers.json();
+                // console.log(dataPosts);
+                //console.log(dataUsers);
+                setPosts(dataPosts);
+                setUsers(dataUsers);
             }
             catch(error) {
                 console.log(error);
@@ -31,6 +37,7 @@ export default function Banner() {
         }
         dataFetch();
     },[]);
+
     return (
         <section className="py-16">
             <div className="container mx-auto md:px-5">
@@ -43,20 +50,21 @@ export default function Banner() {
                 }}
                 >
                 {posts.map((post) => (
-                    <SwiperSlide>
-                        <Slide title={post.title} body={post.body}/>
+                    <SwiperSlide key={post.id}>
+                        <Slide post={post} users={users}/>
                     </SwiperSlide>)
                 )}
-                {/* <SwiperSlide>{Slide()}</SwiperSlide>
-                <SwiperSlide>{Slide()}</SwiperSlide>
-                <SwiperSlide>{Slide()}</SwiperSlide> */}
                 </Swiper>
             </div>
         </section>
     );
 }
 
-const Slide = function({title,body}) {
+const Slide = function({post,users}) {
+    const {title,body,user_id} = post;
+    //const {usersList} = users;
+    console.log(title);
+    //console.log(users);
     const getTitle = () => {
         //let sampleTitle = `Your most unhappy customers are your greatest source of learning`;
         if(title.length >= 50) {
@@ -65,7 +73,18 @@ const Slide = function({title,body}) {
             return title;
         }
     }
-    // getTitle();
+
+    const getAuthor = () => {
+        let postAuthor = '';
+
+        users.forEach(val => {
+            if(val.id == user_id) {
+                postAuthor = val.name;
+            }
+        })
+        return postAuthor;
+    }
+
     return (
         <div className="grid md:grid-cols-2">
             <div className="image">
@@ -84,7 +103,7 @@ const Slide = function({title,body}) {
                 <p className='text-gray-500 py-3'>
                     {body}
                 </p>
-                <h1>author</h1>
+                <h1>{getAuthor()}</h1>
             </div>
         </div>
     )
