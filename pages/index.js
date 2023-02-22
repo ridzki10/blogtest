@@ -76,7 +76,6 @@ export default function Home() {
         onNextClick={handleNextClick}
         paginate={paginate}
         />
-        <h1>Main Content</h1>
       </Template>
   );
 }
