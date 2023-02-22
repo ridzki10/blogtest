@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
-import Image from 'next/image';
+import Post from './Post';
 import Link from 'next/link';
+import Image from 'next/image';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, {Autoplay} from 'swiper';
@@ -8,35 +8,8 @@ import SwiperCore, {Autoplay} from 'swiper';
 // Import Swiper styles
 import 'swiper/css';
 
-export default function Banner() {
+export default function Banner({posts,users}) {
     SwiperCore.use([Autoplay]);
-    const [posts,setPosts] = useState([]);
-    const [users,setUsers] = useState([]);
-    useEffect(() => {
-        const dataFetch = async () => {
-            try {
-                let urlPosts = `https://gorest.co.in/public/v2/posts?page=1&per_page=5`;
-                let urlUsers = `https://gorest.co.in/public/v2/users`;
-                let responsePosts = await fetch(urlPosts);
-                let responseUsers = await fetch(urlUsers);
-
-                if(!responsePosts.ok && !responseUsers.ok) {
-                    throw new Error(`Terjadi gangguan: ${response.status}}`);
-                }
-
-                let dataPosts = await responsePosts.json();
-                let dataUsers = await responseUsers.json();
-                // console.log(dataPosts);
-                //console.log(dataUsers);
-                setPosts(dataPosts);
-                setUsers(dataUsers);
-            }
-            catch(error) {
-                console.log(error);
-            }
-        }
-        dataFetch();
-    },[]);
 
     return (
         <section className="py-16">
@@ -51,62 +24,26 @@ export default function Banner() {
                 >
                 {posts.map((post) => (
                     <SwiperSlide key={post.id}>
-                        <Slide post={post} users={users}/>
+                        <div className="grid md:grid-cols-2">
+                            <Post 
+                            title={post.title} 
+                            user_id={post.user_id}
+                            body={post.body} 
+                            users={users} 
+                            className="text-3xl  md:text-6xl">
+                            <div className="image">
+                                <Link href={"/"}>
+                                    <Image src={"/images/img1.jpg"} width="600" height="600" alt=""/>
+                                </Link>
+                            </div>
+                            </Post>
+                        </div>
                     </SwiperSlide>)
                 )}
                 </Swiper>
             </div>
         </section>
     );
-}
-
-const Slide = function({post,users}) {
-    const {title,body,user_id} = post;
-    //const {usersList} = users;
-    console.log(title);
-    //console.log(users);
-    const getTitle = () => {
-        //let sampleTitle = `Your most unhappy customers are your greatest source of learning`;
-        if(title.length >= 50) {
-            return title.substring(0,50)+" ...";
-        } else {
-            return title;
-        }
-    }
-
-    const getAuthor = () => {
-        let postAuthor = '';
-
-        users.forEach(val => {
-            if(val.id == user_id) {
-                postAuthor = val.name;
-            }
-        })
-        return postAuthor;
-    }
-
-    return (
-        <div className="grid md:grid-cols-2">
-            <div className="image">
-                <Link href={"/"}>
-                    <Image src={"/images/img1.jpg"} width={600} height={600} alt=""/>
-                </Link>
-            </div>
-            <div className="info flex justify-center flex-col">
-                <div className="cat">
-                    <Link href={"/"} className="text-orange-600 hover:text-orange-800">Bussiness Travel </Link>
-                    <Link href={"/"} className="text-gray-800 hover:text-gray-600">- Feb 21, 2023</Link>
-                </div>
-                <div className="title">
-                    <Link legacyBehavior href={"/"}><a className="text-3xl md:text-6xl font-bold text-gray-800 hover:text-gray-600">{getTitle()}</a></Link>
-                </div>
-                <p className='text-gray-500 py-3'>
-                    {body}
-                </p>
-                <h1>{getAuthor()}</h1>
-            </div>
-        </div>
-    )
 }
 
 // function Slide() {
