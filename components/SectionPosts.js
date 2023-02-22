@@ -14,7 +14,14 @@ const SectionPosts = ({posts,users}) => {
                         user_id={post.user_id}
                         body={[]}
                         users={users} 
-                        className="text-xl"/>
+                        className="text-xl"
+                        >
+                        <div className="image">
+                            <Link href={"/"}>
+                                <Image src={"/images/img1.jpg"} width="400" height="600" alt=""/>
+                            </Link>
+                        </div>
+                        </Post>
                     </div>
                 ))}
             </div>

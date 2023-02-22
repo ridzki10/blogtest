@@ -1,4 +1,6 @@
 import Post from './Post';
+import Link from 'next/link';
+import Image from 'next/image';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, {Autoplay} from 'swiper';
@@ -28,7 +30,13 @@ export default function Banner({posts,users}) {
                             user_id={post.user_id}
                             body={post.body} 
                             users={users} 
-                            className="text-3xl  md:text-6xl"/>
+                            className="text-3xl  md:text-6xl">
+                            <div className="image">
+                                <Link href={"/"}>
+                                    <Image src={"/images/img1.jpg"} width="600" height="600" alt=""/>
+                                </Link>
+                            </div>
+                            </Post>
                         </div>
                     </SwiperSlide>)
                 )}

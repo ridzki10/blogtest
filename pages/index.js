@@ -5,6 +5,7 @@ import { Inter } from '@next/font/google'
 import Template from '../layout/Template';
 import Banner from '../components/Banner';
 import SectionPosts from '../components/SectionPosts';
+import SectionCategory from '../components/SectionCategory';
 import Paginate from '../components/Paginate';
 
 const inter = Inter({ subsets: ['latin'] })
@@ -66,6 +67,7 @@ export default function Home() {
     // </h1>
       <Template>
         <Banner posts={currentPost} users={users}></Banner>
+        <SectionCategory posts={currentPost} users={users}/>
         <SectionPosts posts={currentPost} users={users}></SectionPosts>
         <Paginate 
         postPerPage={postPerPage} 

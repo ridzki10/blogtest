@@ -1,8 +1,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import Author from './child/Author';
 
 const Post = function(props) {
-    const {title,body,user_id,users,className} = props;
+    const {
+        title,
+        body,
+        user_id,
+        users,
+        className,
+        children} = props;
     //const {usersList} = users;
     //console.log(title);
     //console.log(users);
@@ -23,24 +30,14 @@ const Post = function(props) {
         }
     }
 
-    const getAuthor = () => {
-        let postAuthor = '';
-
-        users.forEach(val => {
-            if(val.id == user_id) {
-                postAuthor = val.name;
-            }
-        })
-        return postAuthor;
-    }
-
     return (
         <>
-            <div className="image">
+            {/* <div className="image">
                 <Link href={"/"}>
-                    <Image src={"/images/img1.jpg"} width={600} height={600} alt=""/>
+                    <Image src={"/images/img1.jpg"} width={width} height={height} alt=""/>
                 </Link>
-            </div>
+            </div> */}
+            {children}
             <div className="info flex justify-center flex-col">
                 <div className="cat">
                     <Link href={"/"} className="text-orange-600 hover:text-orange-800">Bussiness Travel </Link>
@@ -52,7 +49,7 @@ const Post = function(props) {
                 <p className='text-gray-500 py-3'>
                     {getBody()}
                 </p>
-                <h1>{getAuthor()}</h1>
+                <Author users={users} user_id={user_id}/>
             </div>
         </>
     )
