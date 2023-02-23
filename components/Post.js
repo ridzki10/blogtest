@@ -1,9 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Author from './child/Author';
+import Router from 'next/router';
 
 const Post = function(props) {
     const {
+        post_id,
         title,
         body,
         user_id,
@@ -13,6 +15,14 @@ const Post = function(props) {
     //const {usersList} = users;
     //console.log(title);
     //console.log(users);
+
+    function sendProps() {
+        Router.push({
+          pathname: "/single-post/page",
+          query: {post_id,user_id}
+        });
+      }
+
     const getTitle = () => {
         //let sampleTitle = `Your most unhappy customers are your greatest source of learning`;
         if(title.length >= 50) {
@@ -44,7 +54,7 @@ const Post = function(props) {
                     <Link href={"/"} className="text-gray-800 hover:text-gray-600">- Feb 21, 2023</Link>
                 </div>
                 <div className="title">
-                    <Link legacyBehavior href={"/"}><a className={`${className ? className : ''} font-bold text-gray-800 hover:text-gray-600`}>{getTitle()}</a></Link>
+                   <a onClick={() => sendProps()} className={`${className ? className : ''} font-bold text-gray-800 hover:text-gray-600`}>{getTitle()}</a>
                 </div>
                 <p className='text-gray-500 py-3'>
                     {getBody()}

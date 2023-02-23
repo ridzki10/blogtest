@@ -33,7 +33,7 @@ export default function Banner({posts,users}) {
                             className="text-3xl  md:text-6xl">
                             <div className="image">
                                 <Link href={"/"}>
-                                    <Image src={"/images/img1.jpg"} width="600" height="600" alt=""/>
+                                    <Image src={"/images/img1.jpg"} width="600" height="600" alt="img"/>
                                 </Link>
                             </div>
                             </Post>

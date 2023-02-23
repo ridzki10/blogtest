@@ -10,6 +10,7 @@ const SectionPosts = ({posts,users}) => {
                 {posts.map((post) => (
                     <div className='item' key={post.id}>
                         <Post 
+                        post_id={post.id}
                         title={post.title} 
                         user_id={post.user_id}
                         body={[]}
@@ -18,7 +19,7 @@ const SectionPosts = ({posts,users}) => {
                         >
                         <div className="image">
                             <Link href={"/"}>
-                                <Image src={"/images/img1.jpg"} width="400" height="600" alt=""/>
+                                <Image src={"/images/img1.jpg"} width="400" height="600" alt="img"/>
                             </Link>
                         </div>
                         </Post>

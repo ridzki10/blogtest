@@ -26,6 +26,7 @@ export default function SectionCategory(props) {
                         {posts.map((post) => (
                             <div className='flex gap-5' key={post.id}>
                                 <Post
+                                post_id={post.id}
                                 title={post.title}
                                 user_id={post.user_id}
                                 users={users}
@@ -33,7 +34,7 @@ export default function SectionCategory(props) {
                                 className="text-xl"
                                 >
                                 <div className="image flex flex-col justify-start">
-                                    <Link href={"/"}><Image src={"/images/img1.jpg"} className="rounded" width={300} height={250} alt=""/></Link>
+                                    <Link href={"/"}><Image src={"/images/img1.jpg"} className="rounded" width={300} height={250} alt="img"/></Link>
                                 </div>
                                 </Post>
                             </div>
@@ -46,6 +47,7 @@ export default function SectionCategory(props) {
                         {posts.map((post) => (
                             <div className='flex gap-5' key={post.id}>
                                 <Post
+                                post_id={post.id}
                                 title={post.title}
                                 user_id={post.user_id}
                                 users={users}
@@ -53,7 +55,7 @@ export default function SectionCategory(props) {
                                 className="text-xl"
                                 >
                                 <div className="image flex flex-col justify-start">
-                                    <Link href={"/"}><Image src={"/images/img1.jpg"} className="rounded" width={300} height={250} alt=""/></Link>
+                                    <Link href={"/"}><Image src={"/images/img1.jpg"} className="rounded" width={300} height={250} alt="img"/></Link>
                                 </div>
                                 </Post>
                             </div>
