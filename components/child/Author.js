@@ -22,7 +22,7 @@ export default function Author({users,user_id}) {
         <Image src={"/images/author1.jpg"} width={60} height={60} className="rounded-full" alt="img"></Image>        
         <div className="flex flex-col justify-center px-4">
             <Link legacyBehavior href={"/"}><a className="text-md font-bold text-gray-800 hover:text-gray-600">{getAuthor()}</a></Link>
-            <span className="text-sm text-gray-500">CEO and Founder</span>
+            <span className="text-sm text-gray-500">Freelance Writer</span>
         </div>
     </div>
     )
