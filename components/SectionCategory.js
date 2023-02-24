@@ -34,7 +34,7 @@ export default function SectionCategory(props) {
                                 className="text-xl"
                                 >
                                 <div className="image flex flex-col justify-start">
-                                    <Link href={"/"}><Image src={"https://source.unsplash.com/random/"} className="rounded" width={300} height={250} alt="img"/></Link>
+                                    <Link href={{pathname: '/single-post/page',query:{post_id:post.id,user_id:post.user_id}}}><Image src={"https://source.unsplash.com/random/"} className="rounded" width={300} height={250} alt="img"/></Link>
                                 </div>
                                 </Post>
                             </div>
@@ -55,7 +55,7 @@ export default function SectionCategory(props) {
                                 className="text-xl"
                                 >
                                 <div className="image flex flex-col justify-start">
-                                    <Link href={"/"}><Image src={"https://source.unsplash.com/random/"} className="rounded" width={300} height={250} alt="img"/></Link>
+                                    <Link href={{pathname: '/single-post/page',query:{post_id:post.id,user_id:post.user_id}}}><Image src={"https://source.unsplash.com/random/"} className="rounded" width={300} height={250} alt="img"/></Link>
                                 </div>
                                 </Post>
                             </div>

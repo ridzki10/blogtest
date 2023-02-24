@@ -18,7 +18,7 @@ const SectionPosts = ({posts,users}) => {
                         className="text-xl"
                         >
                         <div className="image">
-                            <Link href={"/"}>
+                            <Link href={{pathname: '/single-post/page',query:{post_id:post.id,user_id:post.user_id}}}>
                                 <Image src="https://source.unsplash.com/random/600x400" width="400" height="600" alt="img"/>
                             </Link>
                         </div>

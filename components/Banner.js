@@ -32,7 +32,7 @@ export default function Banner({posts,users}) {
                             users={users} 
                             className="text-3xl  md:text-6xl">
                             <div className="image">
-                                <Link href={"/"}>
+                                <Link href={{pathname: '/single-post/page',query:{post_id:post.id,user_id:post.user_id}}}>
                                     <Image src={"https://source.unsplash.com/random/600x600"} width="600" height="600" alt="img"/>
                                 </Link>
                             </div>
