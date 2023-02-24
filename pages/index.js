@@ -15,7 +15,7 @@ export default function Home() {
   const [users,setUsers] = useState([]);
   const [page, setPage] = useState(1);
   const [postPerPage,setPostPerPage] = useState(5);
-
+  
   useEffect(() => {
       const dataFetch = async () => {
           try {
@@ -59,6 +59,9 @@ export default function Home() {
   const paginate = (number) => {
     setPage(number);
   }
+
+  // console.log(users);
+  // console.log(posts);
 
   return (
     
