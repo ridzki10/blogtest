@@ -102,7 +102,7 @@ export default function Page() {
                         comments.map((comment) => {
                             if(comment.post_id == post_id) {
                                 return (
-                                    <Comment name={comment.name} body={comment.body}/>
+                                    <Comment key={comment.id} name={comment.name} body={comment.body}/>
                                 );
                             }
                         })
