@@ -19,7 +19,7 @@ const SectionPosts = ({posts,users}) => {
                         >
                         <div className="image">
                             <Link href={"/"}>
-                                <Image src={"/images/img1.jpg"} width="400" height="600" alt="img"/>
+                                <Image src="https://source.unsplash.com/random/600x400" width="400" height="600" alt="img"/>
                             </Link>
                         </div>
                         </Post>

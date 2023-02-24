@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import Author from './child/Author';
 import Router from 'next/router';
@@ -12,9 +11,6 @@ const Post = function(props) {
         users,
         className,
         children} = props;
-    //const {usersList} = users;
-    //console.log(title);
-    //console.log(users);
 
     function sendProps() {
         Router.push({
@@ -24,7 +20,6 @@ const Post = function(props) {
       }
 
     const getTitle = () => {
-        //let sampleTitle = `Your most unhappy customers are your greatest source of learning`;
         if(title.length >= 50) {
             return title.substring(0,50)+" ...";
         } else {
@@ -54,7 +49,7 @@ const Post = function(props) {
                     <Link href={"/"} className="text-gray-800 hover:text-gray-600">- Feb 21, 2023</Link>
                 </div>
                 <div className="title">
-                   <a onClick={() => sendProps()} className={`${className ? className : ''} font-bold text-gray-800 hover:text-gray-600`}>{getTitle()}</a>
+                   <a onClick={() => sendProps()} className={`${className ? className : ''} font-bold text-gray-800 hover:text-gray-600 cursor-pointer`}>{getTitle()}</a>
                 </div>
                 <p className='text-gray-500 py-3'>
                     {getBody()}

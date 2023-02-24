@@ -21,6 +21,8 @@ export default function Page() {
     const [users,setUsers] = useState([]);
     const [posts,setPosts] = useState([]);
     const [comments,setComments] = useState([]);
+    const [showComment,setShowComment] = useState(false);
+
     useEffect(() => {
         const dataFetch = async () => {
             try {
@@ -49,6 +51,20 @@ export default function Page() {
         }
         dataFetch();
     },[]);
+
+    const getCountComment = () => {
+        let nComment = 0;
+        comments.forEach((comment) => {
+            if(comment.post_id == post_id) {
+                nComment += 1;
+            }
+        });
+        return nComment;
+    }
+
+    const handleShowCommentClick = () => {
+        setShowComment((prevState) => !prevState);
+    }
     //console.log(props.body);
     return (
         <Template>
@@ -63,7 +79,7 @@ export default function Page() {
                             <div className="post py-10" key={post.id}>
                             <h1 className='font-bold text-4xl text-center pb-'>{post.title}</h1>
                             <div className='py-10'>
-                                <Image src={"/images/img1.jpg"} width={900} height={600} alt="img"/>
+                                <Image src={"https://source.unsplash.com/random/"} width={900} height={600} alt="img"/>
                             </div>
                             <div className='content text-gray-600 text-lg flex flex-col gap-4'>
                                 {post.body}
@@ -72,8 +88,17 @@ export default function Page() {
                             );
                         }
                     })}
-                    <CommentForm/>
-                    {
+                    <div className="flex justify-center my-3">
+                        <button 
+                        onClick={handleShowCommentClick}
+                        className='px-10 py-3 bg-sky-500 text-white'>
+                        View Comments ({getCountComment()})
+                        </button>
+                    </div>
+
+                    {showComment && <CommentForm/>}
+                    
+                    {showComment &&
                         comments.map((comment) => {
                             if(comment.post_id == post_id) {
                                 return (
